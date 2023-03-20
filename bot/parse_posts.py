@@ -26,13 +26,13 @@ def parse_post(
 
     text = add_urls_to_text(text, urls, videos)
     text = vk_formatter(text)
-    print(text)
     logger.info(f"{item_type.capitalize()} parsing is complete.")
+
     return {"text": text, "photos": photos, "docs": docs}
 
 def vk_formatter(text):
     while True:
-        res = re.search(r'\[[\w\s\d\-/\.:_]+\|[\w\s\d\-/\.:_]+\]', text)
+        res = re.search(r'\[[\w\s\d\-/\.:_@]+\|[\w\s\d\-/\.:_@\"&;]+\]', text)
         if res:
             res = res.group(0)
             ind_separator = res.find('|')

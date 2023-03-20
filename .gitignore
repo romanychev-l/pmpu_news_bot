@@ -1,3 +1,5 @@
-.idea/
 bot/__pycache__/
 bot/logs/
+bot/config.py
+bot/links_data.pickle
+bridge_to_notion/api_config.py

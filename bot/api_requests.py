@@ -8,12 +8,19 @@ def get_data_from_vk(
     vk_token: str, req_version: float, vk_domain: str, req_filter: str, req_count: int
 ) -> Union[dict, None]:
     logger.info("Trying to get posts from VK.")
+    if vk_domain[:4] == 'club':
+        param_key = 'owner_id'
+        param_val = -int(vk_domain[4:])
+    else:
+        param_key = 'domain'
+        param_val = vk_domain
     response = requests.get(
         "https://api.vk.com/method/wall.get",
         params={
             "access_token": vk_token,
             "v": req_version,
-            "domain": vk_domain,
+            #"domain": vk_domain,
+            param_key: param_val,
             "filter": req_filter,
             "count": req_count,
         },
